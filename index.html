@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Colour Time!</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+
+  <body>
+
+    <script src="js/underscore.js"></script>
+    <script src="js/jQuery.js"> </script>
+    <script src="js/backbone.js"></script>
+
+    <script src="data/data.js"></script>
+    <script src="collections/colourCollection.js"></script>
+    <script src="models/appModel.js"></script>
+    <script src="views/appView.js"></script>
+
+    <script>
+        
+        // $(function() {
+            console.log('in file')
+            //put the data from the data file(var colours inside here) into the collection
+            var library = new colourCollection(colours);
+
+            //add the data to the model in an object
+            var app = new appModel({ colours: library });
+
+            //make a new appView with the model linked
+            var view = new appView({ model: appModel });
+
+        // });
+
+    </script>
+
+  </body>
+</html>
