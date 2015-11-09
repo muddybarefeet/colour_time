@@ -19,7 +19,7 @@
 
     <script>
         
-        // $(function() {
+        $(function() {
             console.log('in file')
             //put the data from the data file(var colours inside here) into the collection
             var library = new colourCollection(colours);
@@ -28,9 +28,18 @@
             var app = new appModel({ colours: library });
 
             //make a new appView with the model linked
-            var view = new appView({ model: appModel });
+            var view = new appView({ model: app });
 
-        // });
+            //put the view on the screen
+            $('body').append(view.render());
+
+            /*$(window).resize(function() {
+              var totalHeight = window.innerHeight;
+              var eachBand = totalHeight/array.length;
+              view.renderWithWidth(eachBand);
+            });*/
+
+        });
 
     </script>
 

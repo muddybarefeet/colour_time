@@ -1,3 +1,3 @@
-var colours = Backbone.Collection.extend({
+var colourCollection = Backbone.Collection.extend({
 
 });
