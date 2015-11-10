@@ -31,12 +31,12 @@ var appModel = Backbone.Model.extend({
   },
 
   sendClientData: function(userDetails) {
-
-    console.log('in client Data');//YES!!!
+    console.log(userDetails);
+    console.log('in client Data');
     $.ajax({
       type: 'POST',
       url: 'http://localhost:3000/api/signup',
-      data: userDetails,
+      contentType: "application/json; charset=utf-8",
       data: JSON.stringify(userDetails),
       success: function(data) {
         console.log(data);

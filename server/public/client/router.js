@@ -4,7 +4,7 @@
 var Router = Backbone.Router.extend({
 
   routes : {
-    "/" : "index",
+    " " : "index",
     "signin" : "signin",
     "login" : "login"
   },
@@ -26,12 +26,6 @@ var Router = Backbone.Router.extend({
     var index = new /**/({collection:});
   },
 
-  index: function(){
-    var links = new Shortly.Links();
-    var linksView = new Shortly.LinksView({ collection: links });
-    this.swapView(linksView);
-  },
-  
   swapView: function(view){
     this.$el.html(view.render().el);
   }

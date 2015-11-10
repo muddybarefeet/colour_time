@@ -1,5 +1,7 @@
 var appView = Backbone.View.extend({
 
+  el: '#app',
+
   initialize: function() {
     //here instantiate the other views
     // this.render
@@ -14,8 +16,9 @@ var appView = Backbone.View.extend({
 
   },
 
-  render: function() {
-    //add the new elements to the page
+  render: function(page) {
+    //add the new page to the page
+    this.$el.append(page);
   }
 
 

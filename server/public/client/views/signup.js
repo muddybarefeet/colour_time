@@ -11,7 +11,6 @@ var signup = Backbone.View.extend({
 
   render: function() {
     //take the input and send to the server
-    console.log('in send data function');
     this.$el.html(this.template());
   },
 

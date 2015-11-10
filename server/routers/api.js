@@ -1,22 +1,61 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var bcrypt = require('bcrypt');
 
+router.store = [{email:'a', password:'a'}];
+
+//-----------check existing data--------------------//
 router.post('/login', function(req, res) {
-  //get find the stored info on the database
-  console.log('checking login details',req.body);
+
+  for(var i=0; i<router.store.length; i++) {
+    if (router.store[i].email === req.body.email) {
+      //compare the password
+      bcrypt.compare(req.body.password, router.store[i].password, function(err, res) {
+        //of the password matches
+        if (res) {
+          console.log('match',res);
+            //util.createSession(req, res, user);
+        //if it does not match then send them to sign in
+        } else {
+          console.log('ERRR');
+          //res.redirect('/login');
+        }
+      });
+    }
+  }
+
 });
 
-//post things to database
+/*  comparePassword: function(attemptedPassword, callback) {
+    bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
+      callback(isMatch);
+    });
+  },
+*/
+
+//-----------put new data to the store-------------//
 router.post('/signup', function(req, res) {
-  //take the request and save to an object
-  console.log('storing signin details',req.body);
+
+  var password = req.body.password;
+  
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, hash) {
+      var toStore = {};
+      toStore.email = req.body.email;
+      toStore.password = hash;
+      router.store.push(toStore);
+      console.log('signupSuccess',router.store);
+      res.render('/');
+    });
+  });
+  
 });
 
+//-----------send a request to the colour api-------------//
 router.get('/colours', function(req, res) {
-  //send request to the coulour api
+
   request('http://www.colourlovers.com/api/palettes/random?format=json', function(err, response, body) {
-    //package the response Anna!
     if (err) {
       console.log('err in getting colours:',err);
     } else {

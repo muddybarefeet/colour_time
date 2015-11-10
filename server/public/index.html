@@ -12,15 +12,15 @@
     <script src="js/jQuery.js"> </script>
     <script src="js/backbone.js"></script>
 
-    <script src="data/data.js"></script>
-    <script src="collections/colourCollection.js"></script>
-    <script src="models/appModel.js"></script>
-    <script src="views/appView.js"></script>
-    <script src="views/appView.js"></script>
-    <script src="views/colours.js"></script>
-    <script src="views/signup.js"></script>
-    <script src="views/login.js"></script>
-  <!--   <script src="router.js"></script> -->
+    <script src="client/data/data.js"></script>
+    <script src="client/collections/colourCollection.js"></script>
+    <script src="client/models/appModel.js"></script>
+    <script src="client/views/appView.js"></script>
+    <script src="client/views/appView.js"></script>
+    <script src="client/views/colours.js"></script>
+    <script src="client/views/signup.js"></script>
+    <script src="client/views/login.js"></script>
+    <script src="client/router.js"></script>
 
     <div id="app">   
     </div>
@@ -35,12 +35,13 @@
             var app = new appModel({ colours: library });
 
             //make a new appView with the model linked
-            var view = new colours({ model: app });
+            var view = new signup({ model: app });
 
             //authenticate the user here and decide what route to push them in
 
             //put the view on the screen
-            // $('body').append(view);
+             $('body').append(view.render());
+
 
         });
 
