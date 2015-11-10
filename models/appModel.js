@@ -2,9 +2,13 @@
 var appModel = Backbone.Model.extend({
   
   initialize: function() {
-    console.log('in model');
+
   },
 
+  users: {
+    email: 'anna',
+    password: 'rogers'
+  },
   //calculate the height of the colour bands MAY NEED TO TWEEK SO UPDATES IN WINDOW RESIZE LEAVE FOR MOMENT
   resize: function(array) {
     // $(window).resize(function() {
@@ -15,14 +19,19 @@ var appModel = Backbone.Model.extend({
     // });
   },
 
-  getColor: function(title){
+  sendClientData: function(userDetails) {
+    //POST
+    console.log('in client Data');//YES!!!
+    /*this.users.email = data.email;
+    this.users.password = data.password;*/
     var that = this;
     $.ajax({
-      type: 'GET',
-      url: 'http://www.colourlovers.com/api/palette/444?format=json',
-      headers: {'API-Key': '697wgfynhw53p7fzsw7dbder'},
+      type: 'POST',
+      url: 'http://localhost:3000/api/signup',
+      data: userDetails,
+      //headers: {'API-Key': '697wgfynhw53p7fzsw7dbder'},
       success: function(data) {
-        console.log('data',data);
+        console.log(data);
         console.log('success!');
       },
       error: function(err) {
@@ -31,22 +40,19 @@ var appModel = Backbone.Model.extend({
     });
   },
 
-  sendClientData: function(data) {
-    //POST
-    console.log('in client Data');//YES!!!
-    //take the data and send a request to the server
-    // request("http://localhost:3000/api/signup", function(err, response) {
-
-    // });
-  },
-
   matchClientData: function(data) {
-    //POST
-    //take the data and send a request to the server
-    console.log('incoming data', data);
-    /*request("http://localhost:3000/api/longin", function(err, response) {
-
-    });*/
+    $.ajax({
+      type: 'GET',
+      url: 'http://localhost:3000/api/login',
+      success: function(data) {
+        console.log('checked data',data);
+        console.log('success!');
+      },
+      error: function(err) {
+        console.log('no available');
+      }
+    });
+    
   }
 
 });

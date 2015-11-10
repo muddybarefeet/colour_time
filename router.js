@@ -28,7 +28,7 @@ var Router = Backbone.Router.extend({
 
   swapView: function(view){
     this.$el.html(view.render().el);
-  },
+  }
 
 /*  loadView : function(view) {
     this.view && this.view.remove();

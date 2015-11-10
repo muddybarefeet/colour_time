@@ -6,6 +6,12 @@ var appView = Backbone.View.extend({
     // this.main = new colours({});
     // this.login = new login({});
     // this.signup = new signup({});
+    //$('#app').append(this.render().el);
+
+    this.router = new Router();
+    // this.router.on('route', this.updateNav, this);
+    //Backbone.history.start({ pushState: true });
+
   },
 
   render: function() {
