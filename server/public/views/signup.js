@@ -20,7 +20,7 @@ var signup = Backbone.View.extend({
     //take inputs and sends them to the model to process
     var email = $('.email').val();
     var password = $('.password').val();
-    this.model.sendClientData([email,password]);
+    this.model.sendClientData({email:email,password:password});
   }
 
 

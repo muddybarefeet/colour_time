@@ -17,32 +17,30 @@
     <script src="models/appModel.js"></script>
     <script src="views/appView.js"></script>
     <script src="views/appView.js"></script>
+    <script src="views/colours.js"></script>
     <script src="views/signup.js"></script>
     <script src="views/login.js"></script>
-    <script src="router.js"></script>
+  <!--   <script src="router.js"></script> -->
 
-    <div id="app">
-        
+    <div id="app">   
     </div>
 
     <script>
         
         $(function() {
-            console.log('in file')
             //put the data from the data file(var colours inside here) into the collection
-            var library = new colourCollection(colours);
+            var library = new colourCollection(colourPallett);
 
             //add the data to the model in an object
             var app = new appModel({ colours: library });
 
             //make a new appView with the model linked
-            var view = new login({ model: app });
+            var view = new colours({ model: app });
 
             //authenticate the user here and decide what route to push them in
 
             //put the view on the screen
-            console.log('view',view);
-            $('#app').append(view.render());
+            // $('body').append(view);
 
         });
 
