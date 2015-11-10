@@ -16,6 +16,13 @@
     <script src="collections/colourCollection.js"></script>
     <script src="models/appModel.js"></script>
     <script src="views/appView.js"></script>
+    <script src="views/appView.js"></script>
+    <script src="views/signup.js"></script>
+    <script src="views/login.js"></script>
+
+    <div id="app">
+        
+    </div>
 
     <script>
         
@@ -28,16 +35,13 @@
             var app = new appModel({ colours: library });
 
             //make a new appView with the model linked
-            var view = new appView({ model: app });
+            var view = new login({ model: app });
+
+            //authenticate the user here and decide what route to push them in
 
             //put the view on the screen
-            $('body').append(view.render());
-
-            /*$(window).resize(function() {
-              var totalHeight = window.innerHeight;
-              var eachBand = totalHeight/array.length;
-              view.renderWithWidth(eachBand);
-            });*/
+            console.log('view',view);
+            $('#app').append(view.render());
 
         });
 
