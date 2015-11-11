@@ -15,24 +15,17 @@ router.post('/login', function(req, res) {
         //of the password matches
         if (res) {
           console.log('match',res);
-            //util.createSession(req, res, user);
-        //if it does not match then send them to sign in
+          res.sendStatus(200);
         } else {
-          console.log('ERRR');
-          //res.redirect('/login');
+          console.log('not matched');
+          res.sendStatus(404);
         }
       });
+
     }
   }
 
 });
-
-/*  comparePassword: function(attemptedPassword, callback) {
-    bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
-      callback(isMatch);
-    });
-  },
-*/
 
 //-----------put new data to the store-------------//
 router.post('/signup', function(req, res) {
@@ -45,8 +38,7 @@ router.post('/signup', function(req, res) {
       toStore.email = req.body.email;
       toStore.password = hash;
       router.store.push(toStore);
-      console.log('signupSuccess',router.store);
-      res.render('/');
+      res.sendStatus(200);
     });
   });
   
@@ -73,6 +65,8 @@ router.get('/colours', function(req, res) {
   });
 
 });
+
+
 
 
 module.exports = router;

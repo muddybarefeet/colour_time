@@ -4,35 +4,32 @@
 var Router = Backbone.Router.extend({
 
   routes : {
-    " " : "index",
-    "signin" : "signin",
-    "login" : "login"
+    "signup" : "signup",
+    "login" : "login",
+    "displayMain" : "displayMain"
   },
 
-  signin : function() {
-    //make a new signin instance
-    var signin = new /*views.signin*/();
+  model: undefined,
+
+  initialize : function(arg) {
+  //keep hold of the model for the views passed from index to appView to here
+    this.model = arg;
   },
 
-  login : function() {
-    //make a new login instance
-    var login = new /**/;
+  signup: function() {
+    $('div.pages').hide();
+    $('div#app').show(new signup({model: this.model}));
   },
 
-  index : function() {
-    /*var links = new Shortly.Links();
-    var linksView = new Shortly.LinksView({ collection: links });*/
-    //make a new page instance
-    var index = new /**/({collection:});
+ /* login : function() {
+    console.log('in login');
+    $('div.pages').hide();
+    $('div#app').show(new login({model: this.model}));
   },
-
-  swapView: function(view){
-    this.$el.html(view.render().el);
+*/
+  displayMain : function() {
+    $('div.pages').hide();
+    $('div#app').show(new colours({model: this.model}));
   }
-
-/*  loadView : function(view) {
-    this.view && this.view.remove();
-    this.view = view;
-  }*/
 
 });

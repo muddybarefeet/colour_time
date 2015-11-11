@@ -4,13 +4,13 @@ var login = Backbone.View.extend({
   el: '#app',
   //have a template for the basic layout of the page
   initialize: function() {
-    console.log('init',this.checkData);
+
   },
 
   template: _.template('<h2>Login</h2>Email: <input class="email" type="text" class="name"><br>Password: <input class="password" type="text"><br><button class="sendNew">Submit</button>'),
 
   events: {
-    "click button" : 'checkData',
+    "click .sendNew" : 'checkData',
   },
 
   render: function() {

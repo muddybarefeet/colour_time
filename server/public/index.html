@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Colour Time!</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -22,7 +23,7 @@
     <script src="client/views/login.js"></script>
     <script src="client/router.js"></script>
 
-    <div id="app">   
+    <div id="app">
     </div>
 
     <script>
@@ -35,14 +36,7 @@
             var app = new appModel({ colours: library });
 
             //make a new appView with the model linked
-            var view = new signup({ model: app });
-
-            //authenticate the user here and decide what route to push them in
-
-            //put the view on the screen
-             $('body').append(view.render());
-
-
+            var view = new appView({ model: app });
         });
 
     </script>

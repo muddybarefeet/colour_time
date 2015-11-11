@@ -2,7 +2,7 @@
 var appModel = Backbone.Model.extend({
   
   initialize: function() {
-
+    this.router = new Router(this);
   },
 
   //calculate the height of the colour bands MAY NEED TO TWEEK SO UPDATES IN WINDOW RESIZE LEAVE FOR MOMENT
@@ -22,28 +22,28 @@ var appModel = Backbone.Model.extend({
       url: 'http://localhost:3000/api/colours',
       success: function(data) {
         that.set('colours', data);
-        console.log('return this', that);
       },
       error: function(err) {
-        console.log('no available');
+        console.log('not available');
       }
     });
   },
 
   sendClientData: function(userDetails) {
-    console.log(userDetails);
-    console.log('in client Data');
+    var that = this;
     $.ajax({
       type: 'POST',
       url: 'http://localhost:3000/api/signup',
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(userDetails),
       success: function(data) {
-        console.log(data);
-        console.log('success!');
+        if (data === 'OK') {
+          that.router.navigate('/displayMain', true);
+          console.log('in if', that);
+        }
       },
       error: function(err) {
-        console.log('no available');
+        console.log('not available');
       }
     });
   },
@@ -56,11 +56,14 @@ var appModel = Backbone.Model.extend({
       contentType: "application/json; charset=utf-8",
       data: JSON.stringify(userDetails),
       success: function(data) {
-        console.log('checked data',data);
-        console.log('success!');
+        if (data === 404) {
+          that.router.navigate('/signup', true);
+        } else {
+          that.router.navigate('/main', true);
+        }
       },
       error: function(err) {
-        console.log('no available');
+        console.log('not available');
       }
     });
     
