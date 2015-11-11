@@ -15,7 +15,6 @@ var appModel = Backbone.Model.extend({
   },
 
   getPallett: function() {
-    console.log('in pallett getter');
     var that = this;
     $.ajax({
       type: 'GET',
@@ -39,7 +38,8 @@ var appModel = Backbone.Model.extend({
       success: function(data) {
         if (data === 'OK') {
           that.router.navigate('/displayMain', true);
-          console.log('in if', that);
+        } else {
+          that.router.navigate('/signup', true);
         }
       },
       error: function(err) {

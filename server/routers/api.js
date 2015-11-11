@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var bcrypt = require('bcrypt');
+var utils = require('./../public/db/pre_db');
 
 router.store = [{email:'a', password:'a'}];
 
@@ -29,16 +30,22 @@ router.post('/login', function(req, res) {
 
 //-----------put new data to the store-------------//
 router.post('/signup', function(req, res) {
-
-  var password = req.body.password;
   
+  var email = req.body.email;
+  var password = req.body.password;
+
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(password, salt, function(err, hash) {
-      var toStore = {};
-      toStore.email = req.body.email;
-      toStore.password = hash;
-      router.store.push(toStore);
+      // utils.signupUser(email, hash, function(err, data){
+      //   if (err) {
+      //     return err;
+      //   } else {
+      //     res.sendStatus(200);
+      //   }
+      // });
+      router.store.push({email:email, password:hash});
       res.sendStatus(200);
+
     });
   });
   
