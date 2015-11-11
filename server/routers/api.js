@@ -34,9 +34,11 @@ module.exports = function(db) {
   //-----------put new data to the store-------------//
   router.post('/signup', function(req, res) {
     
-    var email = req.body.email;
-    var password = req.body.password;
-    db.signupUser(email,password, function(err, data) {
+    // var email = req.body.email;
+    // var password = req.body.password;
+
+    //ADDED IN FOR TESTING PURPOSES!!!!!!!! REMEMBER TO REMOVE!!!!!
+    db.signupUser('anna','huggada', function(err, data) {
       if (err) {
         console.log('error insterting data:', err);
         res.sendStatus(500);
