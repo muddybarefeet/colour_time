@@ -8,7 +8,7 @@ var signup = Backbone.View.extend({
     this.render();
   },
 
-  template: _.template('<h2>Sign Up</h2>Email: <input type="text" class="email"><br>Password: <input class="password" type="password"><br><input class="submit" type="submit" value="Submit">'),
+  template: _.template('<div class="inset"><h2>Sign Up</h2>Email: <input type="text" class="email space"><br>Password: <input class="password space" type="password"><br><input class="submit btn" type="submit" value="Submit"></div>'),
 
   events: {
     "click .submit" : "sendData",

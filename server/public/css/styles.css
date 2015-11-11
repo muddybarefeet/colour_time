@@ -5,3 +5,10 @@ body {
   /*font-family: 'Special Elite', cursive;*/
 }
 
+.space {
+  margin: 5px;
+}
+
+.inset {
+  margin-left: 10px;
+}
