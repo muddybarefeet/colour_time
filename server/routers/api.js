@@ -7,29 +7,25 @@ module.exports = function(db) {
 
   var router = express.Router();
 
-  //router.store = [{email:'a', password:'a'}];
 
   //-----------check existing data--------------------//
   router.post('/login', function(req, res) {
 
-    for(var i=0; i<router.store.length; i++) {
-      if (router.store[i].email === req.body.email) {
-        //compare the password
-        bcrypt.compare(req.body.password, router.store[i].password, function(err, res) {
-          //of the password matches
-          if (res) {
-            console.log('match',res);
-            res.sendStatus(200);
-          } else {
-            console.log('not matched');
-            res.sendStatus(404);
-          }
-        });
-
+    db.checkDetails('gideon', 'frizbee', function(err, data) {
+      if (err) {
+        console.log('error checking data:', err);
+        res.sendStatus(404);
+      } else if (!data) {
+        console.log('password does not match');
+        res.sendStatus(404);
+      } else {
+        console.log('password matches!');
+        res.sendStatus(200);
       }
-    }
+    });
 
   });
+  
 
   //-----------put new data to the store-------------//
   router.post('/signup', function(req, res) {
@@ -38,12 +34,12 @@ module.exports = function(db) {
     // var password = req.body.password;
 
     //ADDED IN FOR TESTING PURPOSES!!!!!!!! REMEMBER TO REMOVE!!!!!
-    db.signupUser('anna','huggada', function(err, data) {
+    db.signupUser('gideon','frizbee', function(err, data) {
       if (err) {
         console.log('error insterting data:', err);
         res.sendStatus(500);
       } else {
-        //might need content type application json??!!
+        //returns true or false
         res.status(200).send(data);
       }
     });
@@ -73,5 +69,6 @@ module.exports = function(db) {
   });
 
   return router;
-
 };
+
+

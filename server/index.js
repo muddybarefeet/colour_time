@@ -18,13 +18,16 @@ app.use(function(req, res, next) {
 
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json format so body can be read
+// app.use(function(req, res, next){
+//   //do stuff to request and response
+//   //if note calling next, better bloody well do res.send(SOMETHING);
+//   next();
+// });
 app.use('/api', apiRouter);
 
 app.use('/', express.static(__dirname + '/public/')); //for serving the first page as a static file
 
 //---------------------------------------------------//
-
-var store = [];
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
